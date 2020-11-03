@@ -1,0 +1,7 @@
+# this pack is valid for apps with a hello.txt in the root
+if [ -f $1/heroku-deploy.lisp ]; then
+  echo "CL"
+  exit 0
+else
+  exit 1
+fi
