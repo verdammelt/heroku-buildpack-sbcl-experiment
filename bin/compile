@@ -14,4 +14,4 @@ export SBCL_HOME="$1/.apt/usr/lib/sbcl"
 
 sbcl --script $1/heroku-deploy.lisp
 
-cp heroku $BUILD_DIR
+cp -a -v heroku $BUILD_DIR
