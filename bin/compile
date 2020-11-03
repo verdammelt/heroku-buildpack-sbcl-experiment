@@ -3,4 +3,6 @@
 echo "Compiling..."
 
 which sbcl
+sbcl --eval '(print (list (lisp-implementation-type)
+(lisp-implementation-version)))' --quit
 #sbcl --script $1/heroku-deploy.lisp
