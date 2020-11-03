@@ -2,7 +2,10 @@
 
 echo "Compiling..."
 
+echo "uname..."
+uname -a
+
+echo "where is sbcl..."
 which sbcl
-sbcl --eval '(print (list (lisp-implementation-type)
-(lisp-implementation-version)))' --quit
+# sbcl --eval '(print (list (lisp-implementation-type) (lisp-implementation-version)))' --quit
 #sbcl --script $1/heroku-deploy.lisp
