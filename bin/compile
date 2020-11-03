@@ -7,5 +7,10 @@ uname -a
 
 echo "where is sbcl..."
 which sbcl
+
+echo "================="
+echo "ENV:"
+env
+echo "================="
 # sbcl --eval '(print (list (lisp-implementation-type) (lisp-implementation-version)))' --quit
 #sbcl --script $1/heroku-deploy.lisp
