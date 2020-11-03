@@ -2,5 +2,3 @@
 
 echo "Compiling..."
 
-apt-get update
-apt-get install sbcl
