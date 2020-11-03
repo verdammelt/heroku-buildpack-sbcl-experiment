@@ -1,5 +1,6 @@
-#!/bin/sh
+#!/bin/bash
 
 echo "Compiling..."
 
-sbcl --script $1/heroku-deploy.lisp
+which sbcl
+#sbcl --script $1/heroku-deploy.lisp
