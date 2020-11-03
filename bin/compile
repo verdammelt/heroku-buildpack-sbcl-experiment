@@ -2,3 +2,4 @@
 
 echo "Compiling..."
 
+sbcl --script $1/heroku-deploy.lisp
