@@ -11,4 +11,6 @@ echo "writing profile.d"
 mkdir -p $BUILD_DIR/.profile.d
 echo "export SBCL_HOME=$SBCL_HOME" > $BUILD_DIR/.profile.d/sbcl.sh
 
+cat $BUILD_DIR/.profile.d/sbcl.sh
+
 sbcl --script $1/heroku-deploy.lisp
