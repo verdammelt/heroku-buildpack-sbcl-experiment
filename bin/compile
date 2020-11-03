@@ -14,6 +14,7 @@ export SBCL_HOME="$1/.apt/usr/lib/sbcl"
 
 sbcl --script $1/heroku-deploy.lisp
 
+chmod 755 heroku
 cp -a -v heroku $BUILD_DIR
 
 ls -l $BUILD_DIR
