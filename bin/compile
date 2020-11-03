@@ -8,15 +8,12 @@ uname -a
 echo "where is sbcl..."
 which sbcl
 
-echo "================="
-echo "ARGS:"
-echo "1: " $1
-echo "2: " $2
-echo "3: " $3"
-echo "================="
+export SBCL="$1/.apt/usr/lib/sbcl"
+
 echo "================="
 echo "ENV:"
 env
 echo "================="
-# sbcl --eval '(print (list (lisp-implementation-type) (lisp-implementation-version)))' --quit
+
+sbcl --eval '(print (list (lisp-implementation-type) (lisp-implementation-version)))' --quit
 #sbcl --script $1/heroku-deploy.lisp
