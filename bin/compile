@@ -8,7 +8,7 @@ uname -a
 echo "where is sbcl..."
 which sbcl
 
-export SBCL="$1/.apt/usr/lib/sbcl"
+export SBCL_HOME="$1/.apt/usr/lib/sbcl"
 
 echo "================="
 echo "ENV:"
