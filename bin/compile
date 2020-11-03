@@ -2,18 +2,5 @@
 
 echo "Compiling..."
 
-echo "uname..."
-uname -a
-
-echo "where is sbcl..."
-which sbcl
-
 export SBCL_HOME="$1/.apt/usr/lib/sbcl"
-
-echo "================="
-echo "ENV:"
-env
-echo "================="
-
-sbcl --eval '(print (list (lisp-implementation-type) (lisp-implementation-version)))' --quit
-#sbcl --script $1/heroku-deploy.lisp
+sbcl --script $1/heroku-deploy.lisp
