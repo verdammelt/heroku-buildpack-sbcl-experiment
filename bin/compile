@@ -1,16 +1,17 @@
-#!/bin/bash
+#!/bin/bash -x
 
 echo "Compiling..."
 
 BUILD_DIR=$1
 
-
 export SBCL_HOME="$1/.apt/usr/lib/sbcl"
 
-echo "writing profile.d"
-mkdir -p $BUILD_DIR/.profile.d
-echo "export SBCL_HOME=$SBCL_HOME" > $BUILD_DIR/.profile.d/sbcl.sh
+# echo "writing profile.d"
+# mkdir -p $BUILD_DIR/.profile.d
+# echo "export SBCL_HOME=$SBCL_HOME" > $BUILD_DIR/.profile.d/sbcl.sh
 
-cat $BUILD_DIR/.profile.d/sbcl.sh
+# cat $BUILD_DIR/.profile.d/sbcl.sh
 
 sbcl --script $1/heroku-deploy.lisp
+
+ls -l
