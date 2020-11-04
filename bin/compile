@@ -32,7 +32,7 @@ wget -O $BUILD_DIR/quicklisp.lisp https://beta.quicklisp.org/quicklisp.lisp
 HOME=$BUILD_DIR $BUILD_DIR/sbcl/bin/sbcl \
      --noinform
      --load $BUILD_DIR/quicklisp.lisp \
-     --eval "(quicklisp-quickstart:install)" \
+     --eval "(quicklisp-quickstart:install \"$BUILD_DIR\")" \
      --quit
 
 
