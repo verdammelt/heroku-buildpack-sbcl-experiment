@@ -1,27 +1,27 @@
-#!/bin/bash
-
-echo "Compiling..."
+#!/usr/bin/env bash
 
 BUILDPACK_DIR=`dirname $0`/..
 BUILD_DIR=$1
 CACHE_DIR=$2
 ENV_DIR=$3
 
-echo $BUILDPACK_DIR
-echo $BUILD_DIR
-echo $CACHE_DIR
-echo $ENV_DIR
+log_action() { echo "------> $*";  }
+log_format() { sed -e 's/^/     /';  }
 
+## TODO: this should come from config_var (with defaulting)
 SBCL_VERSION=2.0.10
 SBCL_PKG_NAME=sbcl-${SBCL_VERSION}-x86-64-linux
 SBCL_TARBALL=${SBCL_PKG_NAME}-binary.tar.bz2
 SBCL_SOURCEFORGE_LOCATION=http://prdownloads.sourceforge.net/sbcl/${SBCL_TARBALL}
 
-echo "Downloading SBCL ${SBCL_VERSION}..."
-wget $SBCL_SOURCEFORGE_LOCATION
-bunzip2 -c $SBCL_TARBALL | tar xvf -
+log_action "Downloading SBCL ${SBCL_VERSION}..."
+wget $SBCL_SOURCEFORGE_LOCATION 2>&1 | log_format
+bunzip2 -c $SBCL_TARBALL | tar xvf - 2>&1 | log_format
 cd $SBCL_PKG_NAME
 
-echo "Installing SBCL..."
-./install.sh --prefix=$BUILD_DIR/sbcl
+log_action "Installing SBCL..."
+./install.sh --prefix=$BUILD_DIR/sbcl 2>&1 | log_format
 
+mkdir -p $BUILD_DIR/profile.d
+log_action "Adding $BUILD_DIR/sbcl/bin to PATH..."
+echo "export PATH=$BUILD_PATH/sbcl/bin:$PATH" >> $BUILD_DIR/profile.d/sbcl-path.sh
