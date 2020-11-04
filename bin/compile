@@ -29,10 +29,10 @@ log_action "Installing SBCL..."
 
 log_action "Install QuickLisp..."
 wget -O $BUILD_DIR/quicklisp.lisp https://beta.quicklisp.org/quicklisp.lisp
-HOME=$BUILD_DIR $BUILD_DIR/sbcl/bin/sbcl \
+$BUILD_DIR/sbcl/bin/sbcl \
      --noinform \
      --load $BUILD_DIR/quicklisp.lisp \
-     --eval "(quicklisp-quickstart:install \"$BUILD_DIR\")" \
+     --eval "(quicklisp-quickstart:install :path \"$BUILD_DIR\")" \
      --quit
 
 
