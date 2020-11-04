@@ -27,10 +27,16 @@ cd $SBCL_PKG_NAME
 log_action "Installing SBCL..."
 ./install.sh --prefix=$BUILD_DIR/sbcl 2>&1 | log_format
 
-## TODO: install quicklisp
+log_action "Install QuickLisp..."
+wget -O $BUILD_DIR/quicklisp.lisp https://beta.quicklisp.org/quicklisp.lisp
+HOME=$BUILD_DIR $BUILD_DIR/sbcl/bin/sbcl \
+     --noinform
+     --load $BUILD_DIR/quicklisp.lisp \
+     --eval "(quicklisp-quickstart:install)" \
+     --quit
 
 
+log_action "Adding sbcl/bin to PATH..."
 PROFILE_DIR=$BUILD_DIR/.profile.d
 mkdir -p $PROFILE_DIR
-log_action "Adding sbcl/bin to PATH..."
-echo "export PATH=./sbcl/bin:$PATH" >> $PROFILE_DIR/sbcl-path.sh
+echo "export PATH=./sbcl/bin:\$PATH" >> $PROFILE_DIR/sbcl-path.sh
