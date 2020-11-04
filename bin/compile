@@ -32,7 +32,7 @@ wget https://beta.quicklisp.org/quicklisp.lisp 2>&1 | log_format
 $BUILD_DIR/sbcl/bin/sbcl \
      --noinform \
      --load quicklisp.lisp \
-     --eval '(quicklisp-quickstart:install :path "$BUILD_DIR/")' \
+     --eval "(quicklisp-quickstart:install :path \"$BUILD_DIR/\")" \
      --quit \
      | log_format
 
