@@ -8,8 +8,13 @@ ENV_DIR=$3
 log_action() { echo "------> $*";  }
 log_format() { sed -e 's/^/     /';  }
 
-## TODO: this should come from config_var (with defaulting)
-SBCL_VERSION=2.0.10
+if [ -f $ENV_DIR/SBCL_VERSION ]
+then
+    echo "found version"
+    export SBCL_VERSION=`cat $ENV_DIR/SBCL_VERSION`
+fi
+
+SBCL_VERSION=${SBCL_VERSION:-2.0.10}
 SBCL_PKG_NAME=sbcl-${SBCL_VERSION}-x86-64-linux
 SBCL_TARBALL=${SBCL_PKG_NAME}-binary.tar.bz2
 SBCL_SOURCEFORGE_LOCATION=http://prdownloads.sourceforge.net/sbcl/${SBCL_TARBALL}
@@ -21,6 +26,9 @@ cd $SBCL_PKG_NAME
 
 log_action "Installing SBCL..."
 ./install.sh --prefix=$BUILD_DIR/sbcl 2>&1 | log_format
+
+## TODO: install quicklisp
+
 
 mkdir -p $BUILD_DIR/profile.d
 log_action "Adding $BUILD_DIR/sbcl/bin to PATH..."
