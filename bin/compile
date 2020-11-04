@@ -30,6 +30,7 @@ log_action "Installing SBCL..."
 ## TODO: install quicklisp
 
 
-mkdir -p $BUILD_DIR/profile.d
+PROFILE_DIR=$BUILD_DIR/.profile.d
+mkdir -p $PROFILE_DIR
 log_action "Adding $BUILD_DIR/sbcl/bin to PATH..."
-echo "export PATH=$BUILD_PATH/sbcl/bin:$PATH" >> $BUILD_DIR/profile.d/sbcl-path.sh
+echo "export PATH=$BUILD_PATH/sbcl/bin:$PATH" >> $PROFILE_DIR/sbcl-path.sh
