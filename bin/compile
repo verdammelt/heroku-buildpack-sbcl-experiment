@@ -32,9 +32,18 @@ wget https://beta.quicklisp.org/quicklisp.lisp 2>&1 | log_format
 $BUILD_DIR/sbcl/bin/sbcl \
      --noinform \
      --load quicklisp.lisp \
-     --eval "(quicklisp-quickstart:install :path \"$BUILD_DIR\")" \
+     --eval "(quicklisp-quickstart:install :path \"$BUILD_DIR\/")" \
      --quit \
      | log_format
+
+#log_action "Quicklisp setup..."
+#$BUILD_DIR/sbcl/bin/sbcl \
+#    --noinform \
+#    --load quicklisp.lisp \
+#    --eval "(load \"$BUILD_DIR/quicklisp/setup.lisp\")" \
+#    --quit \
+#    | log_format
+echo '(load "quicklisp/setup.lisp")' > $BUILD_DIR/.sbclrc
 
 log_action "Adding sbcl/bin to PATH..."
 PROFILE_DIR=$BUILD_DIR/.profile.d
