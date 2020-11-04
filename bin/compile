@@ -1,20 +1,40 @@
-#!/bin/bash -x
+#!/bin/bash
 
 echo "Compiling..."
 
+BUILDPACK_DIR=`dirname $0`/..
 BUILD_DIR=$1
+CACHE_DIR=$2
+ENV_DIR=$3
 
-export SBCL_HOME="$1/.apt/usr/lib/sbcl"
+echo $BUILDPACK_DIR
+echo $BUILD_DIR
+echo $CACHE_DIR
+echo $ENV_DIR
 
-# echo "writing profile.d"
-# mkdir -p $BUILD_DIR/.profile.d
-# echo "export SBCL_HOME=$SBCL_HOME" > $BUILD_DIR/.profile.d/sbcl.sh
+SBCL_VERSION=2.0.10
+SBCL_PKG_NAME=sbcl-${SBCL_VERSION}-x86-64-linux
+SBCL_TARBALL=${SBCL_PKG_NAME}-binary.tar.bz2
+SBCL_SOURCEFORGE_LOCATION=http://prdownloads.sourceforge.net/sbcl/${SBCL_TARBALL}
 
-# cat $BUILD_DIR/.profile.d/sbcl.sh
+wget $SBCL_SOURCEFORGE_LOCATION
+bunzip2 -c $SBCL_TARBALL | tar zvf
+cd $SBCL_PKG_NAME
 
-sbcl --script $1/heroku-deploy.lisp
+./install.sh --prefix=$BUILD_DIR
 
-chmod 755 heroku
-cp -a -v heroku $BUILD_DIR
 
-ls -l $BUILD_DIR
+# export SBCL_HOME="$1/.apt/usr/lib/sbcl"
+
+# # echo "writing profile.d"
+# # mkdir -p $BUILD_DIR/.profile.d
+# # echo "export SBCL_HOME=$SBCL_HOME" > $BUILD_DIR/.profile.d/sbcl.sh
+
+# # cat $BUILD_DIR/.profile.d/sbcl.sh
+
+# sbcl --script $1/heroku-deploy.lisp
+
+# chmod 755 heroku
+# cp -a -v heroku $BUILD_DIR
+
+# ls -l $BUILD_DIR
