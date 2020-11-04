@@ -18,7 +18,7 @@ SBCL_TARBALL=${SBCL_PKG_NAME}-binary.tar.bz2
 SBCL_SOURCEFORGE_LOCATION=http://prdownloads.sourceforge.net/sbcl/${SBCL_TARBALL}
 
 wget $SBCL_SOURCEFORGE_LOCATION
-bunzip2 -c $SBCL_TARBALL | tar zvf
+bunzip2 -c $SBCL_TARBALL | tar zvf -
 cd $SBCL_PKG_NAME
 
 ./install.sh --prefix=$BUILD_DIR
