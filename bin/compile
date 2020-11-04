@@ -26,6 +26,7 @@ cd $SBCL_PKG_NAME
 
 log_action "Installing SBCL..."
 ./install.sh --prefix=$BUILD_DIR/sbcl 2>&1 | log_format
+$BUILD_DIR/sbcl/bin/sbcl --version | log_format
 
 log_action "Install QuickLisp..."
 wget https://beta.quicklisp.org/quicklisp.lisp
@@ -35,7 +36,6 @@ $BUILD_DIR/sbcl/bin/sbcl \
      --eval "(quicklisp-quickstart:install :path \"$BUILD_DIR\")" \
      --quit \
      | log_format
-
 
 log_action "Adding sbcl/bin to PATH..."
 PROFILE_DIR=$BUILD_DIR/.profile.d
