@@ -5,12 +5,11 @@ BUILD_DIR=$1
 CACHE_DIR=$2
 ENV_DIR=$3
 
-log_action() { echo "------> $*";  }
-log_format() { sed -e 's/^/     /';  }
+log_action() { echo "-----> $*";  }
+log_format() { sed -e 's/^/       /';  }
 
 if [ -f $ENV_DIR/SBCL_VERSION ]
 then
-    echo "found version"
     export SBCL_VERSION=`cat $ENV_DIR/SBCL_VERSION`
 fi
 
@@ -26,10 +25,10 @@ cd $SBCL_PKG_NAME
 
 log_action "Installing SBCL..."
 ./install.sh --prefix=$BUILD_DIR/sbcl 2>&1 | log_format
-$BUILD_DIR/sbcl/bin/sbcl --version | log_format
+echo "Installed: `$BUILD_DIR/sbcl/bin/sbc --version`" | log_format
 
 log_action "Install QuickLisp..."
-wget https://beta.quicklisp.org/quicklisp.lisp
+wget https://beta.quicklisp.org/quicklisp.lisp 2>&1 | log_format
 $BUILD_DIR/sbcl/bin/sbcl \
      --noinform \
      --load quicklisp.lisp \
