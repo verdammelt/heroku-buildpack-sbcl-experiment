@@ -32,5 +32,5 @@ log_action "Installing SBCL..."
 
 PROFILE_DIR=$BUILD_DIR/.profile.d
 mkdir -p $PROFILE_DIR
-log_action "Adding $BUILD_DIR/sbcl/bin to PATH..."
-echo "export PATH=$BUILD_PATH/sbcl/bin:$PATH" >> $PROFILE_DIR/sbcl-path.sh
+log_action "Adding sbcl/bin to PATH..."
+echo "export PATH=./sbcl/bin:$PATH" >> $PROFILE_DIR/sbcl-path.sh
